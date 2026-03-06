@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - HealthPlus</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard-wrapper { display: flex; min-height: 100vh; background: var(--bg-alt); }
+        .sidebar { width: 250px; background: #0f172a; color: white; padding: 2rem 1.5rem; }
+        .sidebar .logo { color: white; margin-bottom: 3rem; }
+        .sidebar-links a { display: block; padding: 0.75rem 1rem; color: #cbd5e1; border-radius: var(--rounded-md); margin-bottom: 0.5rem; transition: var(--transition); }
+        .sidebar-links a:hover, .sidebar-links a.active { background: var(--primary); color: white; }
+        .main-content { flex: 1; padding: 2rem; overflow-y: auto; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 1rem 2rem; border-radius: var(--rounded-lg); margin-bottom: 2rem; box-shadow: var(--shadow-sm); }
+    </style>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-square-plus"></i> HealthPlus
+            </a>
+            <div class="sidebar-links">
+                <a href="/dashboard" class="active"><i class="fa-solid fa-calendar-check"></i> My Appointments</a>
+                <a href="/?#book-appointment"><i class="fa-solid fa-plus-circle"></i> New Booking</a>
+                <a href="#" id="logoutBtn" style="margin-top: auto;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="topbar">
+                <h2>Welcome, <span id="userName">Patient</span></h2>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="/#book-appointment" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Book Now</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="mb-4">Your Booking History</h3>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Doctor</th>
+                                <th>Department</th>
+                                <th>Date & Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTableBody">
+                            <tr><td colspan="5" class="text-center">Loading appointments...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <div id="toast" class="toast"></div>
+    <script src="/js/patient.js"></script>
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await fetch('/api/auth/logout', { method: 'POST' });
+            window.location.href = '/login.html';
+        });
+    </script>
+</body>
+</html>

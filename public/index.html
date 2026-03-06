@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthPlus Hospital | Advanced Booking</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific layout fixes for Landing Page */
+        .departments, .doctors, .booking { padding: 6rem 0; }
+        .dept-icon { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+        .doc-img { height: 180px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #94a3b8; }
+        .booking-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-square-plus"></i> HealthPlus
+            </a>
+            <nav class="nav-links" id="authNav">
+                <!-- Nav populated via JS based on session -->
+                <a href="#departments">Departments</a>
+                <a href="#doctors">Doctors</a>
+                <a href="/login.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">Log In</a>
+                <a href="/register.html" class="btn btn-primary" style="padding: 0.5rem 1rem;">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div style="display: inline-block; padding: 0.3rem 1rem; background: #e0f2fe; color: var(--primary); font-weight: 600; border-radius: 20px; margin-bottom: 1rem; font-size: 0.85rem;">Dedicated to Excellence</div>
+                <h1>Advanced Medical Care You Can Trust</h1>
+                <p>Experience world-class healthcare with our team of renowned specialists. Book your consultation today and take the first step towards a healthier tomorrow.</p>
+                <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                    <a href="#book-appointment" class="btn btn-primary btn-lg">Book an Appointment</a>
+                </div>
+                <!-- Trust Indicators -->
+                <div style="display: flex; gap: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem;">
+                    <div><h3 style="color: var(--primary); margin-bottom: 0;">500+</h3><span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Expert Doctors</span></div>
+                    <div><h3 style="color: var(--primary); margin-bottom: 0;">24/7</h3><span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Emergency Care</span></div>
+                    <div><h3 style="color: var(--primary); margin-bottom: 0;">10k+</h3><span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Patients Served</span></div>
+                </div>
+            </div>
+            <div style="text-align: center; position: relative;">
+                <div style="width: 400px; height: 400px; background: var(--primary); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; display: flex; align-items: center; justify-content: center; margin: 0 auto; box-shadow: var(--shadow-lg);">
+                    <i class="fa-solid fa-user-doctor" style="font-size: 8rem; color: white;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments -->
+    <section class="departments" id="departments" style="background: var(--bg-alt);">
+        <div class="container">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 3rem;">
+                <h2>Our Departments</h2>
+                <p>We provide a wide range of medical services to meet your healthcare needs.</p>
+            </div>
+            <div class="grid cards-grid" id="deptsGrid">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors -->
+    <section class="doctors" id="doctors">
+        <div class="container">
+            <div class="text-center" style="max-width: 600px; margin: 0 auto 3rem;">
+                <h2>Meet Our Specialists</h2>
+                <p>Highly qualified professionals dedicated to providing the best care.</p>
+                
+                <div class="form-group" style="max-width: 300px; margin: 0 auto;">
+                    <select id="filterDept" class="form-control">
+                        <option value="all">All Departments</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid cards-grid" id="docsGrid">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking" id="book-appointment" style="background: var(--bg-alt);">
+        <div class="container">
+            <div class="booking-layout">
+                <div>
+                    <h2>Schedule Your Visit</h2>
+                    <p>Fill out the form to request an appointment. Note: You must be logged in to book an appointment.</p>
+                    <div style="background: white; padding: 1.5rem; border-radius: var(--rounded-lg); border-left: 4px solid var(--primary); box-shadow: var(--shadow-sm); margin-top: 2rem;">
+                        <h4 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-phone-volume" style="color: var(--primary);"></i> Need immediate assistance?</h4>
+                        <p style="margin-bottom: 0;">Call our 24/7 hotline: <strong>1-800-HEALTH</strong></p>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2.5rem; border-radius: var(--rounded-lg); box-shadow: var(--shadow-lg);">
+                    <form id="bookingForm" novalidate>
+                        <h3 style="border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem; color: var(--primary);"><i class="fa-solid fa-stethoscope"></i> Appointment Details</h3>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="form-group">
+                                <label for="bookDept">Department <span class="req">*</span></label>
+                                <select id="bookDept" name="department_id" required>
+                                    <option value="" disabled selected>Select Department</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookDoc">Preferred Doctor <span class="req">*</span></label>
+                                <select id="bookDoc" name="doctor_id" required>
+                                    <option value="" disabled selected>Select Doctor</option>
+                                    <!-- Dynamic based on dept -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="form-group">
+                                <label for="bookDate">Date <span class="req">*</span></label>
+                                <input type="date" id="bookDate" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookTime">Time Slot <span class="req">*</span></label>
+                                <select id="bookTime" name="time" required>
+                                    <option value="" disabled selected>Select Time</option>
+                                    <option value="09:00 AM">09:00 AM - 10:00 AM</option>
+                                    <option value="10:30 AM">10:30 AM - 11:30 AM</option>
+                                    <option value="01:00 PM">01:00 PM - 02:00 PM</option>
+                                    <option value="03:00 PM">03:00 PM - 04:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="bookNotes">Additional Notes (Optional)</label>
+                            <textarea id="bookNotes" name="notes" rows="3" placeholder="Briefly describe your symptoms..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBookingBtn">
+                            <span class="btn-text">Confirm Appointment</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #0f172a; color: #cbd5e1; padding: 4rem 0 2rem; text-align: center;">
+        <div class="container">
+            <div class="logo" style="color: white; justify-content: center; margin-bottom: 1rem;"><i class="fa-solid fa-square-plus"></i> HealthPlus</div>
+            <p>&copy; 2026 HealthPlus Hospital. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+    <script src="/js/main.js"></script>
+</body>
+</html>
